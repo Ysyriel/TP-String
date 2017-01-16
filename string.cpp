@@ -2,9 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-String::String(const string& str){
-		return string
-	}
-	
+string::string(){
+	tab = "\0";
+	capacite = 50;
+	longueur = 0;
+}
 
-	
+

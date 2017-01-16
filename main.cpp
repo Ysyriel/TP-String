@@ -3,6 +3,7 @@
 #include "string.h"
 
 int main(){
-	
+	string str();
+	printf("La chaine : %s",str);
 	return EXIT_SUCCESS;
 }

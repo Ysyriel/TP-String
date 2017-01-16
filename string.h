@@ -1,9 +1,13 @@
 class string {
   public : 
+    
+
 
   private :
     int capacite;
     int longueur;
     int longueurmax;
-    char[capacite];
+    char tab[capacite];
+    string(const string& str);	
+    string()
 };
