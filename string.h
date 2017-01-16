@@ -1,13 +1,12 @@
 class string {
   public : 
-    
+    string();
 
 
   private :
-    int capacite;
+    size_t capacite;
     int longueur;
-    int longueurmax;
+    static const int longueurmax=100;
     char tab[capacite];
-    string(const string& str);	
-    string()
+
 };
