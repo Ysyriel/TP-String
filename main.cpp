@@ -1,9 +1,10 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 #include "string.h"
 
 int main(){
-	string str();
-	printf("La chaine : %s",str);
+	string str;
 	return EXIT_SUCCESS;
 }
+
+
