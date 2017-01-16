@@ -2,8 +2,8 @@ class string {
   public : 
 
   private :
-    int capacite;
+    size_t capacite;
     int longueur;
-    int longueurmax;
-    char[capacite];
+    static const int longueurmax=100;
+    char tab[capacite];
 };
