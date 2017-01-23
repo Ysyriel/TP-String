@@ -17,7 +17,9 @@ class String {
 	//Destructeurs
 	//~String();
 	
-
+	//Méthodes publiques 
+    const char* c_str() const; //Retourne un pointeur sur la string 
+    size_t size() const; //Retourne la longueur de la string en terme de bytes 
     
 
 };
