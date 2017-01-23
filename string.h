@@ -25,11 +25,13 @@ class String {
 	
 	//Getters
 	size_t capacity();
-
+	size_t size();
+	size_t length();
+	size_t max_size();
+	const char* c_str() const; //Retourne un pointeur sur la string 
+	
 	//Méthodes
-	void resize(size_t n); //Change la string en n caractères
-    const char* c_str() const; //Retourne un pointeur sur la string 
-    size_t size() const; //Retourne la longueur de la string en terme de bytes 
+	void resize(size_t n); //Retaille la chaîne en n caractères
     bool empty() const;
     
 };
