@@ -7,7 +7,7 @@ class String {
 	size_t size_; //taille effective de la String
     size_t capacity_; //capacité du tableau
     char* tab_; //"valeur" de la String (contenu : chaine de caractères)
-    static const size_t max_size; //taille maximale du tableau/chaîne
+    static const size_t max_size_; //taille maximale du tableau/chaîne
     
     //Méthodes
     size_t length(const char* c);

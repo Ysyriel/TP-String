@@ -2,7 +2,7 @@
 #include <cstdio>
 #include <cstdlib>
 
-const size_t String::max_size = 100; //Définition de l'attribut static
+const size_t String::max_size_ = 100; //Définition de l'attribut static
 
 //Constructeurs
 String::String(){ //Constructeur par défaut
@@ -48,7 +48,7 @@ size_t String::length(){
 }
 
 size_t String::max_size(){
-    return max_size;
+    return max_size_;
 }
 
 size_t String::size(){
@@ -63,8 +63,8 @@ const char* String::c_str() const{ //Renvoie un pointeur sur la chaîne de carac
 size_t String::length(const char* s){ //Renvoie la longueur du tableau
 	size_t len=0;
 	while (s[len] != '\0'){
-		if (len>= max_size){
-			printf("Attention : la longueur dépasse max_size, le tableau sera raccourci à max_size valant %lu \n", max_size);
+		if (len>= max_size_){
+			printf("Attention : la longueur dépasse max_size, le tableau sera raccourci à max_size valant %lu \n", max_size_);
 			break;
 		}
 		len++;
@@ -74,8 +74,8 @@ size_t String::length(const char* s){ //Renvoie la longueur du tableau
 
 size_t String::capacity(size_t size){ //Renvoie la capacité du tableau
 	size=size*2;
-	if (size>(max_size/2))
-		return max_size;
+	if (size>(max_size_/2))
+		return max_size_;
 	else
 		return size;
 }
@@ -87,14 +87,13 @@ bool String :: empty() const{ //Teste si la chaine de caractères est vide
     }
     else {
 	return false;
-
+	}
+}
 
 void String::resize(size_t n){ //Change la string en n caractères
-    if (n > MAX_SIZE){
-	printf("Warning (String::resize): requied size exceed MAX_SIZE "
-	       "and it will be shortened to MAX_SIZE which is %zu\n",
-	       MAX_SIZE);
-	count=MAX_SIZE;
+    if (n > max_size_){
+	printf("Attention : la taille du tableau dépasse max_size donc il est raccourci a la taille max_size valant %d", max_size_);
+	n=max_size_;
     }
     if (n > size_){
 	if (n < capacity_) {
