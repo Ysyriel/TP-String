@@ -11,7 +11,7 @@ class String {
     
     //Méthodes
     size_t length(const char* c);
-    size_t getCapacity(size_t size);
+    size_t capacity(size_t size);
     
   public : 
 	//Constructeurs
@@ -22,6 +22,8 @@ class String {
 	//Destructeur
 	~String();
 	
+	//Getters
+	size_t capacity();
 
     
 
