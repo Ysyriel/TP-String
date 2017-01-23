@@ -59,12 +59,20 @@ size_t String::getCapacity(size_t size){
 		return size;
 }
 
-//Renvoie un pointeur sur la chaîne de caractère 
+//Méthodes publiques
+ 
 const char* String::c_str() const{
     return tab_;
 }
 
-//Retourne la longueur de la string, en terme de bytes.
 size_t String::size()const {
     return size_;
 }
+
+void String::clear() {
+    tab_[0]='\0';
+    size_=0;
+}
+
+
+

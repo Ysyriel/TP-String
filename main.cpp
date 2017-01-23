@@ -23,6 +23,11 @@ int main(){
     //Test size pour taille 
     printf("size : %zu", str2.size());    
 
+    //Test clear pour une chaîne de caractère 
+    str2.clear();
+    printf("Lorsque la chaine str2 est effacée :");
+    printf("c_str: %s \n",str2.c_str());
+    
 	return EXIT_SUCCESS;
 }
 
