@@ -2,7 +2,7 @@
 #include <cstdio>
 #include <cstdlib>
 
-const size_t String::max_size = 100; //Définition de l'attribut static
+const size_t String::max_size_ = 100; //Définition de l'attribut static
 
 //Constructeurs
 String::String(){ //Constructeur par défaut
@@ -48,19 +48,23 @@ size_t String::length(){
 }
 
 size_t String::max_size(){
-    return max_size;
+    return max_size_;
 }
 
 size_t String::size(){
     return size_;
 }
 
+const char* String::c_str() const{ //Renvoie un pointeur sur la chaîne de caractère 
+    return tab_;
+}
+
 //Méthodes protégées
 size_t String::length(const char* s){ //Renvoie la longueur du tableau
 	size_t len=0;
 	while (s[len] != '\0'){
-		if (len>= max_size){
-			printf("Attention : la longueur dépasse max_size, le tableau sera raccourci à max_size valant %lu \n", max_size);
+		if (len>= max_size_){
+			printf("Attention : la longueur dépasse max_size, le tableau sera raccourci à max_size valant %lu \n", max_size_);
 			break;
 		}
 		len++;
@@ -70,27 +74,31 @@ size_t String::length(const char* s){ //Renvoie la longueur du tableau
 
 size_t String::capacity(size_t size){ //Renvoie la capacité du tableau
 	size=size*2;
-	if (size>(max_size/2))
-		return max_size;
+	if (size>(max_size_/2))
+		return max_size_;
 	else
 		return size;
 }
 
-const char* String::c_str() const{ //Renvoie un pointeur sur la chaîne de caractère 
-    return tab_;
+//Méthodes publiques
+
+bool String :: empty() const{ //Teste si la chaine de caractères est vide
+    if (size_==0){
+	return true;
+    }
+    else {
+	return false;
+	}
 }
 
-size_t String::size()const { //Retourne la longueur de la string, en terme de bytes
-    return size_;
-}
-
-//Méthode publiques
 void String::resize(size_t n){ //Change la string en n caractères
     if (n > max_size_){
 	printf("Warning (String::resize): requied size exceed MAX_SIZE "
 	       "and it will be shortened to MAX_SIZE which is %zu\n",
 	       max_size_);
 	n = max_size_;
+	printf("Attention : la taille du tableau dépasse max_size donc il est raccourci a la taille max_size valant %d", max_size_);
+	n=max_size_;
     }
     if (n > size_){
 	if (n < capacity_) {
@@ -113,6 +121,12 @@ void String::resize(size_t n){ //Change la string en n caractères
 		tab_[n]='\0';
 		size_=n;
     }
+
+}
+
+void String::clear() {
+    tab_[0]='\0';
+    size_=0;
 }
 
 //Opérateurs
@@ -146,5 +160,6 @@ String operator+(const String& lhs, const char* rhs){ //Opérateur+(char*) à dr
 	return result;
     }
 }
+
 
 
