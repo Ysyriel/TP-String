@@ -11,7 +11,7 @@ class String {
     
     //Méthodes
     size_t length(const char* c);
-    size_t getCapacity(size_t size);
+    size_t capacity(size_t size);
     
     
   public : 
@@ -22,11 +22,12 @@ class String {
 
 	//Destructeur
 	~String();
+	
+	//Getters
+	size_t capacity();
 
 	//Méthodes
 	void resize(size_t n); //Retaille la chaîne en n caractères
-
-	//Méthodes publiques 
     const char* c_str() const; //Retourne un pointeur sur la string 
     size_t size() const; //Retourne la longueur de la string en terme de bytes 
     

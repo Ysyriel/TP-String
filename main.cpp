@@ -15,7 +15,10 @@ int main(){
 	char c1[]= "abcdefg";
     printf("c1 = %s\n", c1);
 	String str3=String(c1); //test avec gdb (print str3) $1 = {size_ = 7, capacity_ = 14, tab_ = 0x602050 "abcdefg", static max_size = 100}
-    
+	
+	//test des getters 
+	int a=str3.capacity(); //test avec gdb (print a) $1 = 14 
+   
     //Test c_str pour pointeur 
     printf("c_str : %s ", str2.c_str()); 
     

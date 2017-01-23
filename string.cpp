@@ -23,7 +23,7 @@ String::String (const String& str){ //Constructeur par copie
 
 String::String(char* c_string){ //Constructeur par c-string
 	size_=length(c_string);
-	capacity_=getCapacity(size_);
+	capacity_=capacity(size_);
 	tab_=new char[capacity_+1];
 	for (unsigned int i=0; i<size_; i++){
 			tab_[i]=c_string[i];
@@ -36,6 +36,11 @@ String::~String()
 {
     delete[] tab_;
     tab_=nullptr;
+}
+
+//Getters
+size_t String::capacity(){
+	return capacity_;
 }
 
 //Méthodes protégées
@@ -51,7 +56,7 @@ size_t String::length(const char* s){ //Renvoie la longueur du tableau
 	return len;
 }
 
-size_t String::getCapacity(size_t size){ //Renvoie la capacité du tableau
+size_t String::capacity(size_t size){ //Renvoie la capacité du tableau
 	size=size*2;
 	if (size>(max_size/2))
 		return max_size;
