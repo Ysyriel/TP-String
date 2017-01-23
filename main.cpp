@@ -18,9 +18,9 @@ int main(){
 	int a=str3.capacity(); //test avec gdb (print a) $1 = 14 
 	
     //Test c_str pour pointeur 
-    printf("c_str : %s ", str2.c_str()); 
+    printf("c_str : %s\n", str3.c_str()); 
     //Test size pour taille 
-    printf("size : %zu", str2.size());    
+    printf("size : %zu\n", str3.size());    
     //Test length pour longueur
     printf("length : %zu", str2.length()); 
     //Test max_size pour max_size
@@ -30,9 +30,9 @@ int main(){
 	printf("%d\n",b); //retourne 1 (VRAI : la chaine str est vide car créée par le constructeur par défaut)
 
     //Test clear pour une chaîne de caractère 
-    str2.clear();
-    printf("Lorsque la chaine str2 est effacée :");
-    printf("c_str: %s \n",str2.c_str());
+    str3.clear();
+    printf("Lorsque la chaine str3 est effacée :");
+    printf("c_str: %s \n",str3.c_str());
     
 	return EXIT_SUCCESS;
 }
