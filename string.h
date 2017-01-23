@@ -10,13 +10,14 @@ class String {
     static const size_t max_size; //taille maximale du tableau/chaîne
     
     //Méthodes
-    size_t String::length(const char* c);
-    size_t String::getCapacity(size_t size);
+    size_t length(const char* c);
+    size_t getCapacity(size_t size);
     
   public : 
 	//Constructeurs
     String(); //Constructeur par défaut
-	//String(char* str_in); //Constructeur à partir d'une c-string
+    String(const String& str); //Constructeur par copie 
+	String(char* c_string); //Constructeur à partir d'une c-string
 
 	//Destructeurs
 	//~String();

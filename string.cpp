@@ -12,7 +12,16 @@ String::String(){ //Constructeur par défaut
 	tab_[0]='\0';
 }
 
-String::String(char* c_string){ // Constructeur par c-string
+String::String (const String& str){ //Constructeur par copie
+    size_=str.size_;
+    capacity_=str.capacity_;
+    tab_= new char[capacity_+1];
+    for(unsigned int i=0; i<size_;i++)
+		tab_[i]=str.tab_[i];
+		tab_[size_]='\0';
+}
+
+String::String(char* c_string){ //Constructeur par c-string
 	size_=length(c_string);
 	capacity_=getCapacity(size_);
 	tab_=new char[capacity_+1];
@@ -21,14 +30,16 @@ String::String(char* c_string){ // Constructeur par c-string
 	}	
 	tab_[size_]='\0';
 }	
+
 //Destructeurs
 
 //Méthodes protégées
-size_t String::length(const char* c){
+size_t String::length(const char* s){
 	size_t len=0;
-	while (c[len] != '\0' || len <= max_size){
-		if (len=max_size){
-			printf("Attention : la chaîne en paramètre est trop longue, et sera réduite à une longueur max_size valant %lu \n", max_size);
+	while (s[len] != '\0'){
+		if (len>= max_size){
+			printf("Attention : la longueur dépasse max_size, le tableau sera raccourci à max_size valant %lu \n", max_size);
+			break;
 		}
 		len++;
 	}
@@ -42,3 +53,5 @@ size_t String::getCapacity(size_t size){
 	else
 		return size;
 }
+
+
