@@ -32,6 +32,11 @@ String::String(char* c_string){ //Constructeur par c-string
 }	
 
 //Destructeurs
+String::~String()
+{
+    delete[] tab_;
+    tab_=nullptr;
+}
 
 //Méthodes protégées
 size_t String::length(const char* s){
@@ -53,5 +58,3 @@ size_t String::getCapacity(size_t size){
 	else
 		return size;
 }
-
-

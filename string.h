@@ -19,8 +19,8 @@ class String {
     String(const String& str); //Constructeur par copie 
 	String(char* c_string); //Constructeur à partir d'une c-string
 
-	//Destructeurs
-	//~String();
+	//Destructeur
+	~String();
 	
 
     
