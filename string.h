@@ -7,11 +7,12 @@ class String {
 	size_t size_; //taille effective de la String
     size_t capacity_; //capacité du tableau
     char* tab_; //"valeur" de la String (contenu : chaine de caractères)
-    static const size_t max_size; //taille maximale du tableau/chaîne
+    static const size_t max_size_; //taille maximale du tableau/chaîne
     
     //Méthodes
     size_t length(const char* c);
-    size_t getCapacity(size_t size);
+    size_t capacity(size_t size);
+    
     
   public : 
 	//Constructeurs
@@ -22,9 +23,17 @@ class String {
 	//Destructeur
 	~String();
 	
-	//Méthodes publiques 
-    const char* c_str() const; //Retourne un pointeur sur la string 
-    size_t size() const; //Retourne la longueur de la string en terme de bytes 
-    void clear (); //Efface le contenu  de la string 
+
+	//Getters
+	size_t capacity();
+	size_t size();
+	size_t length();
+	size_t max_size();
+	const char* c_str() const; //Retourne un pointeur sur la string 
+	
+	//Méthodes
+	void resize(size_t n); //Retaille la chaîne en n caractères
+    bool empty() const;
+     void clear (); //Efface le contenu  de la string 
 
 };
