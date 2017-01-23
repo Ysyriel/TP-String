@@ -34,4 +34,7 @@ class String {
     const char* c_str() const; //Retourne un pointeur sur la string 
     size_t size() const; //Retourne la longueur de la string en terme de bytes 
     
+    //Opérateurs
+    String& operator=(const char* other);
+    
 };

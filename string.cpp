@@ -86,23 +86,23 @@ size_t String::size()const { //Retourne la longueur de la string, en terme de by
 
 //Méthode publiques
 void String::resize(size_t n){ //Change la string en n caractères
-    if (n > MAX_SIZE){
+    if (n > max_size_){
 	printf("Warning (String::resize): requied size exceed MAX_SIZE "
 	       "and it will be shortened to MAX_SIZE which is %zu\n",
-	       MAX_SIZE);
-	count=MAX_SIZE;
+	       max_size_);
+	n = max_size_;
     }
     if (n > size_){
 	if (n < capacity_) {
-	    for (size_t i=size_; i<n; i++)
-		tab_[i]=' ';
-	    tab_[n]='\0';
-	    size_=n;
+	    for (size_t i = size_; i<n; i++)
+		tab_[i] = ' ';
+	    tab_[n] = '\0';
+	    size_ = n;
 	} else {
-	    char* nptr= new char [capacity(n)+1];
-	    for (unsigned int i =0; i<size_; i++)
-		nptr[i]=tab_[i];
-	    for (size_t i=size_; i<n; i++)
+	    char* nptr = new char [capacity(n)+1];
+	    for (unsigned int i = 0; i<size_; i++)
+		nptr[i] = tab_[i];
+	    for (size_t i = size_; i<n; i++)
 		nptr[i]=' ';
 	    nptr[n]='\0';
 	    delete[] tab_;
@@ -114,3 +114,37 @@ void String::resize(size_t n){ //Change la string en n caractères
 		size_=n;
     }
 }
+
+//Opérateurs
+String operator=(char c){ //Opérateur=(char)
+	size_= 1;
+	capacity_= capacity(size_);
+	data_= new char[capacity_+1]; 
+	data_[0]= c;
+	data_[size_] = '\0';
+	return *this;
+}
+
+String operator+(const String& lhs, const char* rhs){ //Opérateur+(char*) à droite
+    String result;
+    int rhs_length = result.length(rhs); 
+    //In case that string is super long 
+    if (lhs.length()+rhs_length > String::max_size_) {
+	printf("Attention : strings concatenation size "
+	       "out of range, taking only left hand side\n");
+	result=lhs;
+	return result;
+    } else {
+	result.size_=lhs.length()+rhs_length;
+	result.capacity_=result.capacity(result.size_);
+	result.tab_= new char[result.capacity_ + 1];
+	for (unsigned int i=0; i < lhs.length(); i++)
+	    result.tab_[i]=lhs.tab_[i];
+	for (int i=0; i < rhs_length; i++)
+	    result.tab_[i+lhs.length()]=rhs[i];
+	result.tab_[result.size_]='\0';
+	return result;
+    }
+}
+
+
