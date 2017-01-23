@@ -20,10 +20,14 @@ int main(){
 	int a=str3.capacity(); //test avec gdb (print a) $1 = 14 
    
     //Test c_str pour pointeur 
-    printf("c_str : %s ", str2.c_str()); 
+    printf("c_str : %s\n", str2.c_str()); 
     
     //Test size pour taille 
-    printf("size : %zu", str2.size());    
+    printf("size : %zu\n", str2.size());    
+    
+    //Test de empty
+    bool b=str.empty();
+	printf("%d\n",b); //retourne 1 (VRAI : la chaine str est vide car créée par le constructeur par défaut)
 
 	return EXIT_SUCCESS;
 }

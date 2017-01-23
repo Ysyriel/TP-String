@@ -30,5 +30,6 @@ class String {
 	void resize(size_t n); //Change la string en n caractères
     const char* c_str() const; //Retourne un pointeur sur la string 
     size_t size() const; //Retourne la longueur de la string en terme de bytes 
+    bool empty() const;
     
 };

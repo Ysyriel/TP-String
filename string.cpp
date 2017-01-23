@@ -64,10 +64,20 @@ size_t String::capacity(size_t size){ //Renvoie la capacité du tableau
 		return size;
 }
 
+//Méthodes publiques
 const char* String::c_str() const{ //Renvoie un pointeur sur la chaîne de caractère 
     return tab_;
 }
 
-size_t String::size()const {//Retourne la longueur de la string, en terme de bytes
+size_t String::size() const{ //Retourne la longueur de la string, en terme de bytes
     return size_;
+}
+
+bool String :: empty() const{ //Teste si la chaine de caractères est vide
+    if (size_==0){
+	return true;
+    }
+    else {
+	return false;
+    }
 }
