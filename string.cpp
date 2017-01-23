@@ -117,3 +117,16 @@ void String::resize(size_t n){ //Change la string en n caractères
 		size_=n;
     }
 }
+
+void String::reserve (size_t n){ 
+    if (n>size_){//ne fais rien sinon
+		if (n>max_size_){
+			printf("Attention(reserve): ne peux pas allouer la capacité demandée\n");
+			//Ne fais rien si la taille demandée est supérieure a max_size
+		} 
+		else {
+			capacity_=n;
+		}
+    }
+}
+

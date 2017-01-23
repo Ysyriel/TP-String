@@ -33,5 +33,6 @@ class String {
 	//Méthodes
 	void resize(size_t n); //Retaille la chaîne en n caractères
     bool empty() const;
+    void reserve(size_t n);
     
 };
