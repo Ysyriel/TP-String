@@ -12,3 +12,11 @@ String::String(){
 }
 
 
+String::String (const String& str){ 
+    size_=str.size_;
+    capacity_=str.capacity_;
+    tab_= new char[capacity_+1];
+    for(unsigned int i=0; i<size_;i++)
+	tab_[i]=str.tab_[i];
+    tab_[size_]='\0';
+}
