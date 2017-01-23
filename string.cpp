@@ -11,4 +11,8 @@ String::String(){
 	tab_[0]='\0';
 }
 
-
+String::~String()
+{
+    delete[] tab_;
+    tab_=nullptr;
+}

@@ -13,8 +13,8 @@ class String {
     String(); //Constructeur par défaut
 	//String(size_t n, char t); //Constructeur à partir d'une c-string
 
-	//Destructeurs
-	//~String();
+	//Destructeur
+	~String();
 	
 
     
