@@ -13,6 +13,7 @@ class String {
     size_t length(const char* c);
     size_t capacity(size_t size);
     
+    
   public : 
 	//Constructeurs
     String(); //Constructeur par défaut
@@ -25,6 +26,9 @@ class String {
 	//Getters
 	size_t capacity();
 
+	//Méthodes
+	void resize(size_t n); //Change la string en n caractères
+    const char* c_str() const; //Retourne un pointeur sur la string 
+    size_t size() const; //Retourne la longueur de la string en terme de bytes 
     
-
 };

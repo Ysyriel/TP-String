@@ -18,7 +18,13 @@ int main(){
 	
 	//test des getters 
 	int a=str3.capacity(); //test avec gdb (print a) $1 = 14 
-	
+   
+    //Test c_str pour pointeur 
+    printf("c_str : %s ", str2.c_str()); 
+    
+    //Test size pour taille 
+    printf("size : %zu", str2.size());    
+
 	return EXIT_SUCCESS;
 }
 

@@ -44,7 +44,7 @@ size_t String::capacity(){
 }
 
 //Méthodes protégées
-size_t String::length(const char* s){
+size_t String::length(const char* s){ //Renvoie la longueur du tableau
 	size_t len=0;
 	while (s[len] != '\0'){
 		if (len>= max_size){
@@ -56,10 +56,18 @@ size_t String::length(const char* s){
 	return len;
 }
 
-size_t String::capacity(size_t size){
+size_t String::capacity(size_t size){ //Renvoie la capacité du tableau
 	size=size*2;
 	if (size>(max_size/2))
 		return max_size;
 	else
 		return size;
+}
+
+const char* String::c_str() const{ //Renvoie un pointeur sur la chaîne de caractère 
+    return tab_;
+}
+
+size_t String::size()const {//Retourne la longueur de la string, en terme de bytes
+    return size_;
 }
