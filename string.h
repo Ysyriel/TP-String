@@ -1,15 +1,22 @@
 #include <cstdio>
 #include <cstdlib>
 
-class string {
-  public : 
-    string();
-
-
+class String {
   private :
-    size_t capacite;
-    int longueur;
-    static const int longueurmax=100;
-    char* tab;
+	size_t size_; //
+    size_t capacity_; // 
+    char* tab_; //
+    static const size_t max_size; //
+    
+  public : 
+	//Constructeurs
+    //String(); //Constructeur par défaut
+	//String(size_t n, char t); //Constructeur à partir d'une c-string
+
+	//Destructeurs
+	//~String();
+	
+
+    
 
 };
