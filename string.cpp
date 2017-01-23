@@ -63,6 +63,37 @@ const char* String::c_str() const{ //Renvoie un pointeur sur la chaîne de carac
     return tab_;
 }
 
-size_t String::size()const {//Retourne la longueur de la string, en terme de bytes
+size_t String::size()const { //Retourne la longueur de la string, en terme de bytes
     return size_;
+}
+
+//Méthode publiques
+void String::resize(size_t n){ //Change la string en n caractères
+    if (n > MAX_SIZE){
+	printf("Warning (String::resize): requied size exceed MAX_SIZE "
+	       "and it will be shortened to MAX_SIZE which is %zu\n",
+	       MAX_SIZE);
+	count=MAX_SIZE;
+    }
+    if (n > size_){
+	if (n < capacity_) {
+	    for (size_t i=size_; i<n; i++)
+		tab_[i]=' ';
+	    tab_[n]='\0';
+	    size_=n;
+	} else {
+	    char* nptr= new char [capacity(n)+1];
+	    for (unsigned int i =0; i<size_; i++)
+		nptr[i]=tab_[i];
+	    for (size_t i=size_; i<n; i++)
+		nptr[i]=' ';
+	    nptr[n]='\0';
+	    delete[] tab_;
+	    tab_=nptr;
+	    size_=n;
+	}
+    } else {
+		tab_[n]='\0';
+		size_=n;
+    }
 }

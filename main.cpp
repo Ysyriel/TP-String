@@ -21,7 +21,7 @@ int main(){
     
     //Test size pour taille 
     printf("size : %zu", str2.size());    
-
+    
 	return EXIT_SUCCESS;
 }
 

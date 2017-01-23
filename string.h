@@ -24,7 +24,7 @@ class String {
 	~String();
 
 	//Méthodes
-	void resize(size_t n);
+	void resize(size_t n); //Retaille la chaîne en n caractères
 
 	//Méthodes publiques 
     const char* c_str() const; //Retourne un pointeur sur la string 
