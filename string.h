@@ -13,6 +13,7 @@ class String {
     size_t length(const char* c);
     size_t getCapacity(size_t size);
     
+    
   public : 
 	//Constructeurs
     String(); //Constructeur par défaut
@@ -22,7 +23,8 @@ class String {
 	//Destructeur
 	~String();
 	
-
+	//Méthodes
+	void resize(size_t n);
     
 
 };
