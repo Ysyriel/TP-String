@@ -25,6 +25,9 @@ class String {
 	
 	//Getters
 	size_t capacity();
+	size_t size();
+	size_t length();
+	size_t max_size();
 
 	//Méthodes
 	void resize(size_t n); //Retaille la chaîne en n caractères

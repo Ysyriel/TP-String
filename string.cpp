@@ -39,8 +39,20 @@ String::~String()
 }
 
 //Getters
-size_t String::capacity(){
+size_t String::capacity(){ 
 	return capacity_;
+}
+
+size_t String::length(){
+    return size_;
+}
+
+size_t String::max_size(){
+    return max_size;
+}
+
+size_t String::size(){
+    return size_;
 }
 
 //Méthodes protégées
