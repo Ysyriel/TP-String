@@ -22,7 +22,7 @@ class String {
 
 	//Destructeur
 	~String();
-	
+
 	//Getters
 	size_t capacity();
 	size_t size();
@@ -32,7 +32,11 @@ class String {
 	
 	//Méthodes
 	void resize(size_t n); //Retaille la chaîne en n caractères
-    bool empty() const;
+	bool empty() const;
+    void clear (); //Efface le contenu  de la string 
     void reserve(size_t n);
     
+    //Opérateurs
+    String operator=(const char* other);
+    String operator+(const String& lhs, const char* rhs);
 };
