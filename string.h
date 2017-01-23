@@ -11,6 +11,7 @@ class String {
   public : 
 	//Constructeurs
     String(); //Constructeur par défaut
+    String(const String& str); //Constructeur par copie 
 	//String(size_t n, char t); //Constructeur à partir d'une c-string
 
 	//Destructeur
