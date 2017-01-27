@@ -74,54 +74,47 @@ size_t String::length(const char* s){ //Renvoie la longueur du tableau
 
 size_t String::capacity(size_t size){ //Renvoie la capacité du tableau
 	size=size*2;
-	if (size>(max_size_/2))
-		return max_size_;
-	else
-		return size;
+	if (size>(max_size_/2)) return max_size_;
+	else return size;
 }
 
 //Méthodes publiques
 
 bool String :: empty() const{ //Teste si la chaine de caractères est vide
-    if (size_==0){
-	return true;
-    }
-    else {
-	return false;
-	}
+    if (size_==0) return true;
+    else return false;
+	
 }
 
-void String::resize(size_t n){ //Change la string en n caractères
-    if (n > max_size_){
-	printf("Warning (String::resize): requied size exceed MAX_SIZE "
-	       "and it will be shortened to MAX_SIZE which is %zu\n",
-	       max_size_);
-	n = max_size_;
-	printf("Attention : la taille du tableau dépasse max_size donc il est raccourci a la taille max_size valant %d", max_size_);
-	n=max_size_;
+void String::resize(size_t n, char c){ //Change la taille de la string en n caractères
+    if (n > max_size_){ //Si la taille demandee excede celle de max_size, on la diminue a max_size
+		n = max_size_;
+		printf("Attention : la taille demandée dépasse max_size donc est raccourcie a max_size valant %lu", max_size_);
+		n=max_size_;
     }
     if (n > size_){
-	if (n < capacity_) {
-	    for (size_t i = size_; i<n; i++)
-		tab_[i] = ' ';
-	    tab_[n] = '\0';
-	    size_ = n;
-	} else {
-	    char* nptr = new char [capacity(n)+1];
-	    for (unsigned int i = 0; i<size_; i++)
-		nptr[i] = tab_[i];
-	    for (size_t i = size_; i<n; i++)
-		nptr[i]=' ';
-	    nptr[n]='\0';
-	    delete[] tab_;
-	    tab_=nptr;
-	    size_=n;
+		if (n < capacity_) { //Si la taille est inférieure a la capacité : pas de probleme on ajoute autant d'espaces qu'il le faut
+			for (size_t i = size_; i<n; i++){
+					tab_[i] = c;
+					tab_[n+1] = '\0';
+					size_ = n;
+			}
+		} 
+		else { //Sinon on declare un nouveau tableau (temporaire puisqu'il deviendra l'attribut tab_ de notre classe) de la taille adequate, on recopie les anciennes valeurs puis on supprime l'ancien tableau
+			char* tmp = new char [capacity(n)+1];
+			for (unsigned int i = 0; i<size_; i++) tmp[i] = tab_[i];
+			for (size_t i = size_; i<n; i++) tmp[i]=c;
+			tmp[n+1]='\0';
+			delete[] tab_;
+			tab_=tmp;
+			size_=n;
+			capacity_=n;
+		}
 	}
-    } else {
-		tab_[n]='\0';
+    else {   //On gère le cas ou n est plus petit que la taille actuelle de la chaine, en supprimant les caractères après n
+		tab_[n+1]='\0';
 		size_=n;
     }
-
 }
 
 void String::clear() {
@@ -130,48 +123,22 @@ void String::clear() {
 }
 
 void String::reserve (size_t n){ 
-    if (n>size_){//ne fais rien sinon
+    if (n>size_){ //ne fais rien si n<size
 		if (n>max_size_){
-			printf("Attention(reserve): ne peux pas allouer la capacité demandée\n");
+			printf("Attention(reserve): ne peux pas allouer la capacité demandée. Rappel : max_size vaut %lu \n", max_size_);
 			//Ne fais rien si la taille demandée est supérieure a max_size
 		} 
-		else {
+		else { //On declare un nouveau tableau (temporaire puisqu'il deviendra l'attribut tab_ de notre classe) de la taille adequate, on recopie les anciennes valeurs puis on supprime l'ancien tableau
+			char* tmp = new char[n+1];
+			for (unsigned int i =0; i<=size_; i++) tmp[i]=tab_[i];
+			delete[] tab_;
+			tab_=tmp;
 			capacity_=n;
 		}
     }
 }
 
 //Opérateurs
-String operator=(char c){ //Opérateur=(char)
-	size_= 1;
-	capacity_= capacity(size_);
-	data_= new char[capacity_+1]; 
-	data_[0]= c;
-	data_[size_] = '\0';
-	return *this;
-}
-
-String operator+(const String& lhs, const char* rhs){ //Opérateur+(char*) à droite
-    String result;
-    int rhs_length = result.length(rhs); 
-    //In case that string is super long 
-    if (lhs.length()+rhs_length > String::max_size_) {
-	printf("Attention : strings concatenation size "
-	       "out of range, taking only left hand side\n");
-	result=lhs;
-	return result;
-    } else {
-	result.size_=lhs.length()+rhs_length;
-	result.capacity_=result.capacity(result.size_);
-	result.tab_= new char[result.capacity_ + 1];
-	for (unsigned int i=0; i < lhs.length(); i++)
-	    result.tab_[i]=lhs.tab_[i];
-	for (int i=0; i < rhs_length; i++)
-	    result.tab_[i+lhs.length()]=rhs[i];
-	result.tab_[result.size_]='\0';
-	return result;
-    }
-}
 
 
 

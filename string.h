@@ -31,12 +31,11 @@ class String {
 	const char* c_str() const; //Retourne un pointeur sur la string 
 	
 	//Méthodes
-	void resize(size_t n); //Retaille la chaîne en n caractères
-	bool empty() const;
+	void resize(size_t n, char c=' '); //Change la taille de la string en n caractères, avec un caractere "par defaut" pour la surcharge des methodes quand il n'est pas spécifié
+	bool empty() const; //Teste si la chaine de caractere est vide
     void clear (); //Efface le contenu  de la string 
-    void reserve(size_t n);
+    void reserve(size_t n); //Modifie la capacity_ d'un objet
     
     //Opérateurs
-    String operator=(const char* other);
-    String operator+(const String& lhs, const char* rhs);
+
 };
