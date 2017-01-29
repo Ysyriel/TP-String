@@ -139,7 +139,7 @@ void String::reserve (size_t n){ //Modifie la capacity_ d'un objet
     }
 }
 
-//Opérateurs
+//Opérateurs =
 
 String& String::operator=(const char* s){ //Change la valeur de la chaine (objet) a partir d'une chaine de caractères (non objet : suite de caracteres)
 	size_=length(s);
@@ -168,4 +168,25 @@ String& String::operator=(char c){ //Change la valeur de la chaine (objet) a par
 	tab_[0]=c;
 	tab_[size_]='\0';
 	return *this;
+}
+
+
+//Opérateurs +
+
+String operator+(const String& s, char c){ //Recrée un nouvel objet, concatenation de l'ancien objet et d'un caractere a la suite de celui-ci
+    String res;
+    if(s.size_==s.max_size_){
+		printf("Attention(operateur +) : l'ajout d'un caractere est impossible\n");
+		res=s;
+    }
+    else{
+		res.size_=s.size_+1;
+		res.capacity_=res.capacity(res.size_);
+		res.tab_=new char[res.capacity_+1];
+	for(unsigned int i=0; i<s.size_;i++)
+	    res.tab_[i]=s.tab_[i];
+	res.tab_[s.size_]=c;
+	res.tab_[s.size_+1]='\0';
+    }
+    return res;
 }

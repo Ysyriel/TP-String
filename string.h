@@ -42,4 +42,7 @@ class String {
 	String& operator=(const String s); //Change la valeur de la chaine (objet) a partir d'une autre chaine de caractère (objet) 
 	//De meme =(string) est très semblable au constructeur par copie à l'exception qu'il ne crée pas de nouvel objet.
 	String& operator=(char c); //Change la valeur de la chaine (objet) a partir d'un caractere
+
+	friend String operator+(const String& s, const char c); //Recrée un nouvel objet, concatenation de l'ancien objet et d'un caractere a la suite de celui-ci
+
 };

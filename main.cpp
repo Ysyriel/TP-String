@@ -59,7 +59,13 @@ int main(){
 	str2=c;
 	//Test avec gdb (p str2) $1 = {size_ = 1, capacity_ = 2, tab_ = 0x6030b0 "a", static max_size_ = 100}
 	//On note que l'adresse de str2.tab_ ne change pas, comme prevu.
-
+	
+	String str4=str2+c;
+	//Test avec gdb (p str4) $1 = {size_ = 2, capacity_ = 4, tab_ = 0x603110 "aa", static max_size_ = 100}
+	str4=str4+c;
+	//Test avec gdb (p str4) par curiosité $1 = {size_ = 3, capacity_ = 6, tab_ = 0x603170 "aaa", static max_size_ = 100}
+	//Adresse differente : nouvel objet retourné par la methode!
+	
 	return EXIT_SUCCESS;
 }
 
