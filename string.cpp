@@ -190,7 +190,6 @@ String operator+(const String& s, char c){ //Recrée un nouvel objet, concatenat
     return res;
 }
 
-
 String operator+(const String& s, const char* str){ //Recrée un nouvel objet, concatenation de l'ancien objet et d'une chaine de caractere (non objet) a la suite de celui-ci
 //On traite ce cas de la meme facon que plus haut : on verifie que la chaine que l'on souhaite creer ne depasse pas la taille maximale tout d'abord   
     String res;
