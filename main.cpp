@@ -45,13 +45,17 @@ int main(){
 	str3.resize(25,'m');
 	printf("Après resize la c_string de str3 est : %s \n",str3.c_str());
 	//Test avec gdb (p str3) $1 = {size_ = 25, capacity_ = 50, tab_ = 0x603070 ' ' <se r\377\377\377\377\377\377\377\377p\377\377\377\377\377\377\377\377te 20 fois>, "mmmmm", static max_size_ = 100}
-r
+
 	//Test des opérateurs
 	char c2[]="azertyuiop";
-	str3=c2;
+	str3=c2; // =(char*)
 	//Test avec gdb (p str3) $1 = {size_ = 10, capacity_ = 20, tab_ = 0x603050 "azertyuiop", static max_size_ = 100}
-
 	
+	//Test avec gdb (p str2 avant d'appliquer l'operateur) 	$1 = {size_ = 0, capacity_ = 0, tab_ = 0x603030 "", static max_size_ = 100}
+	str2=str3; // =(String)
+	//Après : $2 = {size_ = 10, capacity_ = 20, tab_ = 0x6030d0 "azertyuiop", static max_size_ = 100}
+
+
 	return EXIT_SUCCESS;
 }
 

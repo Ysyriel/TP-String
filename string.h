@@ -37,6 +37,8 @@ class String {
     void reserve(size_t n); //Modifie la capacity_ d'un objet
     
     //Opérateurs
-	String& operator=(const char* s);
-	
+	String& operator=(const char* s); //Change la valeur de la chaine (objet) a partir d'une chaine de caractère (non objet : suite de caracteres) 
+	//Finalement l'operateur =(char*) est très semblable au constructeur par c_string, sauf qu'il ne crée pas de nouvel objet.
+	String& operator=(const String s); //Change la valeur de la chaine (objet) a partir d'une autre chaine de caractère (objet) 
+	//De meme =(string) est très semblable au constructeur par copie à l'exception qu'il ne crée pas de nouvel objet.
 };

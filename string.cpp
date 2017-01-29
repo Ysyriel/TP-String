@@ -18,16 +18,15 @@ String::String (const String& str){ //Constructeur par copie
     tab_= new char[capacity_+1];
     for(unsigned int i=0; i<size_;i++)
 		tab_[i]=str.tab_[i];
-		tab_[size_]='\0';
+	tab_[size_]='\0';
 }
 
 String::String(char* c_string){ //Constructeur par c-string
 	size_=length(c_string);
 	capacity_=capacity(size_);
 	tab_=new char[capacity_+1];
-	for (unsigned int i=0; i<size_; i++){
-			tab_[i]=c_string[i];
-	}	
+	for (unsigned int i=0; i<size_; i++)
+		tab_[i]=c_string[i];	
 	tab_[size_]='\0';
 }	
 
@@ -94,16 +93,17 @@ void String::resize(size_t n, char c){ //Change la taille de la string en n cara
     }
     if (n > size_){
 		if (n < capacity_) { //Si la taille est inférieure a la capacité : pas de probleme on ajoute autant d'espaces qu'il le faut
-			for (size_t i = size_; i<n; i++){
-					tab_[i] = c;
-					tab_[n+1] = '\0';
-					size_ = n;
-			}
+			for (size_t i = size_; i<n; i++)
+				tab_[i] = c;
+			tab_[n+1] = '\0';
+			size_ = n;
 		} 
 		else { //Sinon on declare un nouveau tableau (temporaire puisqu'il deviendra l'attribut tab_ de notre classe) de la taille adequate, on recopie les anciennes valeurs puis on supprime l'ancien tableau
 			char* tmp = new char [capacity(n)+1];
-			for (unsigned int i = 0; i<size_; i++) tmp[i] = tab_[i];
-			for (size_t i = size_; i<n; i++) tmp[i]=c;
+			for (unsigned int i = 0; i<size_; i++) 
+				tmp[i] = tab_[i];
+			for (size_t i = size_; i<n; i++) 
+				tmp[i]=c;
 			tmp[n+1]='\0';
 			delete[] tab_;
 			tab_=tmp;
@@ -130,7 +130,8 @@ void String::reserve (size_t n){ //Modifie la capacity_ d'un objet
 		} 
 		else { //On declare un nouveau tableau (temporaire puisqu'il deviendra l'attribut tab_ de notre classe) de la taille adequate, on recopie les anciennes valeurs puis on supprime l'ancien tableau
 			char* tmp = new char[n+1];
-			for (unsigned int i =0; i<=size_; i++) tmp[i]=tab_[i];
+			for (unsigned int i =0; i<=size_; i++) 
+				tmp[i]=tab_[i];
 			delete[] tab_;
 			tab_=tmp;
 			capacity_=n;
@@ -140,15 +141,23 @@ void String::reserve (size_t n){ //Modifie la capacity_ d'un objet
 
 //Opérateurs
 
-String& String::operator=(const char* s){ //Change la valeur de la chaine (objet) a partir d'une chaine de caractère (non objet : suite de caracteres)
+String& String::operator=(const char* s){ //Change la valeur de la chaine (objet) a partir d'une chaine de caractères (non objet : suite de caracteres)
 	size_=length(s);
 	capacity_=capacity(size_);
 	tab_=new char[capacity_+1];
-	for (unsigned int i=0; i<size_; i++){
-			tab_[i]=s[i];
-	}	
+	for (unsigned int i=0; i<size_; i++)
+		tab_[i]=s[i];	
 	tab_[size_]='\0';
 	return *this;
 }
 
+String& String::operator=(const String str){ //Change la valeur de la chaine (objet) a partir d'une autre chaine de caractères (objet)
+    size_=str.size_;
+    capacity_=str.capacity_;
+    tab_= new char[capacity_+1];
+    for(unsigned int i=0; i<size_;i++)
+		tab_[i]=str.tab_[i];
+	tab_[size_]='\0';
+	return *this;
+}
 
