@@ -37,5 +37,6 @@ class String {
     void reserve(size_t n); //Modifie la capacity_ d'un objet
     
     //Opérateurs
-
+	String& operator=(const char* s);
+	
 };

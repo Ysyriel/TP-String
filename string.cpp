@@ -117,12 +117,12 @@ void String::resize(size_t n, char c){ //Change la taille de la string en n cara
     }
 }
 
-void String::clear() {
+void String::clear() { //Efface le contenu  de la string 
     tab_[0]='\0';
     size_=0;
 }
 
-void String::reserve (size_t n){ 
+void String::reserve (size_t n){ //Modifie la capacity_ d'un objet
     if (n>size_){ //ne fais rien si n<size
 		if (n>max_size_){
 			printf("Attention(reserve): ne peux pas allouer la capacité demandée. Rappel : max_size vaut %lu \n", max_size_);
@@ -140,6 +140,15 @@ void String::reserve (size_t n){
 
 //Opérateurs
 
-
+String& String::operator=(const char* s){ //Change la valeur de la chaine (objet) a partir d'une chaine de caractère (non objet : suite de caracteres)
+	size_=length(s);
+	capacity_=capacity(size_);
+	tab_=new char[capacity_+1];
+	for (unsigned int i=0; i<size_; i++){
+			tab_[i]=s[i];
+	}	
+	tab_[size_]='\0';
+	return *this;
+}
 
 

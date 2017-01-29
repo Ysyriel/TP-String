@@ -44,7 +44,12 @@ int main(){
     //Test avec gdb (p str3) $1 = {size_ = 20, capacity_ = 50, tab_ = 0x603070 ' ' <se r\377\377\377\377\377\377\377\377p\377\377\377\377\377\377\377\377te 20 fois>, static max_size_ = 100}
 	str3.resize(25,'m');
 	printf("Après resize la c_string de str3 est : %s \n",str3.c_str());
-	// Test avec gdb (p str3) $1 = {size_ = 25, capacity_ = 50, tab_ = 0x603070 ' ' <se r\377\377\377\377\377\377\377\377p\377\377\377\377\377\377\377\377te 20 fois>, "mmmmm", static max_size_ = 100}
+	//Test avec gdb (p str3) $1 = {size_ = 25, capacity_ = 50, tab_ = 0x603070 ' ' <se r\377\377\377\377\377\377\377\377p\377\377\377\377\377\377\377\377te 20 fois>, "mmmmm", static max_size_ = 100}
+r
+	//Test des opérateurs
+	char c2[]="azertyuiop";
+	str3=c2;
+	//Test avec gdb (p str3) $1 = {size_ = 10, capacity_ = 20, tab_ = 0x603050 "azertyuiop", static max_size_ = 100}
 
 	
 	return EXIT_SUCCESS;
