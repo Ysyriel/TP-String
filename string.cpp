@@ -161,3 +161,11 @@ String& String::operator=(const String str){ //Change la valeur de la chaine (ob
 	return *this;
 }
 
+String& String::operator=(char c){ //Change la valeur de la chaine (objet) a partir d'un caractere
+	size_=1;
+	capacity_=capacity(size_);
+	tab_=new char[capacity_+1]; 
+	tab_[0]=c;
+	tab_[size_]='\0';
+	return *this;
+}

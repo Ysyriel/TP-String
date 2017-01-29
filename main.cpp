@@ -10,7 +10,7 @@ int main(){
     String str2(str); //test avec gdb (print str2) $1 = {size_ = 0, capacity_ = 0, tab_ = 0x602030 "", static max_size = 100}
 	//Test du constructeur par c-string
 	char c1[]= "abcdefg";
-	String str3=String(c1); //test avec gdb (print str3) $1 = {size_ = 7, capacity_ = 14, tab_ = 0x602050 "abcdefg", static max_size = 100}
+	String str3=String(c1); //Test avec gdb (print str3) $1 = {size_ = 7, capacity_ = 14, tab_ = 0x602050 "abcdefg", static max_size = 100}
 	
 	//Test des getters
 	//Test capacity pour capacité
@@ -54,7 +54,11 @@ int main(){
 	//Test avec gdb (p str2 avant d'appliquer l'operateur) 	$1 = {size_ = 0, capacity_ = 0, tab_ = 0x603030 "", static max_size_ = 100}
 	str2=str3; // =(String)
 	//Après : $2 = {size_ = 10, capacity_ = 20, tab_ = 0x6030d0 "azertyuiop", static max_size_ = 100}
-
+	
+	char c='a';
+	str2=c;
+	//Test avec gdb (p str2) $1 = {size_ = 1, capacity_ = 2, tab_ = 0x6030b0 "a", static max_size_ = 100}
+	//On note que l'adresse de str2.tab_ ne change pas, comme prevu.
 
 	return EXIT_SUCCESS;
 }
