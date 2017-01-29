@@ -44,5 +44,5 @@ class String {
 	String& operator=(char c); //Change la valeur de la chaine (objet) a partir d'un caractere
 
 	friend String operator+(const String& s, const char c); //Recrée un nouvel objet, concatenation de l'ancien objet et d'un caractere a la suite de celui-ci
-
+	friend String operator+(const String& s, const char* str);  //Recrée un nouvel objet, concatenation de l'ancien objet et d'une chaine de caractere (non objet) a la suite de celui-ci
 };

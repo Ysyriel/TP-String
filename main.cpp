@@ -45,7 +45,8 @@ int main(){
 	str3.resize(25,'m');
 	printf("Après resize la c_string de str3 est : %s \n",str3.c_str());
 	//Test avec gdb (p str3) $1 = {size_ = 25, capacity_ = 50, tab_ = 0x603070 ' ' <se r\377\377\377\377\377\377\377\377p\377\377\377\377\377\377\377\377te 20 fois>, "mmmmm", static max_size_ = 100}
-
+	str3.resize(1000); //On teste la gestion des exceptions (1000>max_size_)
+	
 	//Test des opérateurs
 	char c2[]="azertyuiop";
 	str3=c2; // =(char*)
@@ -65,6 +66,14 @@ int main(){
 	str4=str4+c;
 	//Test avec gdb (p str4) par curiosité $1 = {size_ = 3, capacity_ = 6, tab_ = 0x603170 "aaa", static max_size_ = 100}
 	//Adresse differente : nouvel objet retourné par la methode!
+	
+	String str5=str4+c2;
+	//Test avec gdb (p str5) $1 = {size_ = 13, capacity_ = 26, tab_ = 0x604190 "aaaazertyuiop", static max_size_ = 100}
+	str5.resize(100,c);
+	str5=str5+c2; //On teste la gestion des exceptions (ici on depasse size_max_)
+	//On constate avec gdb (p str5) $1 = {size_ = 100, capacity_ = 100,  tab_ = 0x6042c0 "aaaazertyuiop", 'a' <se r\377\377\377\377\377\377\377\377p\377\377\377\377\377\377\377\377te 87 fois>, static max_size_ = 100}
+
+
 	
 	return EXIT_SUCCESS;
 }

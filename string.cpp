@@ -88,7 +88,7 @@ bool String :: empty() const{ //Teste si la chaine de caractères est vide
 void String::resize(size_t n, char c){ //Change la taille de la string en n caractères
     if (n > max_size_){ //Si la taille demandee excede celle de max_size, on la diminue a max_size
 		n = max_size_;
-		printf("Attention : la taille demandée dépasse max_size donc est raccourcie a max_size valant %lu", max_size_);
+		printf("Attention : la taille demandée dépasse max_size donc est raccourcie a max_size valant %lu\n", max_size_);
 		n=max_size_;
     }
     if (n > size_){
@@ -170,7 +170,6 @@ String& String::operator=(char c){ //Change la valeur de la chaine (objet) a par
 	return *this;
 }
 
-
 //Opérateurs +
 
 String operator+(const String& s, char c){ //Recrée un nouvel objet, concatenation de l'ancien objet et d'un caractere a la suite de celui-ci
@@ -183,10 +182,34 @@ String operator+(const String& s, char c){ //Recrée un nouvel objet, concatenat
 		res.size_=s.size_+1;
 		res.capacity_=res.capacity(res.size_);
 		res.tab_=new char[res.capacity_+1];
-	for(unsigned int i=0; i<s.size_;i++)
+	for(unsigned int i=0; i<s.size_; i++)
 	    res.tab_[i]=s.tab_[i];
 	res.tab_[s.size_]=c;
 	res.tab_[s.size_+1]='\0';
     }
     return res;
 }
+
+
+String operator+(const String& s, const char* str){ //Recrée un nouvel objet, concatenation de l'ancien objet et d'une chaine de caractere (non objet) a la suite de celui-ci
+//On traite ce cas de la meme facon que plus haut : on verifie que la chaine que l'on souhaite creer ne depasse pas la taille maximale tout d'abord   
+    String res;
+    int strlongueur = res.length(str); 
+    if(s.size_+strlongueur > s.max_size_){
+		printf("Attention (operateur +) : l'ajout de la chaine de caractere est impossible. Seul le membre de gauche est conserve.\n");
+		res=s;
+    } 
+    else{
+		res.size_=s.size_+strlongueur;
+		res.capacity_=res.capacity(res.size_);
+		res.tab_= new char[res.capacity_+1];
+		for(unsigned int i=0; i<s.size_; i++)
+			res.tab_[i]=s.tab_[i];
+		for(int i=0; i<strlongueur; i++)
+			res.tab_[i+s.size_]=str[i];
+		res.tab_[res.size_+1]='\0';
+	}
+	return res;
+}
+
+
