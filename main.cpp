@@ -57,23 +57,25 @@ int main(){
 	//Après : $2 = {size_ = 10, capacity_ = 20, tab_ = 0x6030d0 "azertyuiop", static max_size_ = 100}
 	
 	char c='a';
-	str2=c;
+	str2=c; // =(char)
 	//Test avec gdb (p str2) $1 = {size_ = 1, capacity_ = 2, tab_ = 0x6030b0 "a", static max_size_ = 100}
 	//On note que l'adresse de str2.tab_ ne change pas, comme prevu.
 	
-	String str4=str2+c;
+	String str4=str2+c; //+(char)
 	//Test avec gdb (p str4) $1 = {size_ = 2, capacity_ = 4, tab_ = 0x603110 "aa", static max_size_ = 100}
-	str4=str4+c;
+	str4=str4+c; //+(char)
 	//Test avec gdb (p str4) par curiosité $1 = {size_ = 3, capacity_ = 6, tab_ = 0x603170 "aaa", static max_size_ = 100}
 	//Adresse differente : nouvel objet retourné par la methode!
 	
-	String str5=str4+c2;
+	String str5=str4+c2; //+(char*)
 	//Test avec gdb (p str5) $1 = {size_ = 13, capacity_ = 26, tab_ = 0x604190 "aaaazertyuiop", static max_size_ = 100}
 	str5.resize(100,c);
 	str5=str5+c2; //On teste la gestion des exceptions (ici on depasse size_max_)
 	//On constate avec gdb (p str5) $1 = {size_ = 100, capacity_ = 100,  tab_ = 0x6042c0 "aaaazertyuiop", 'a' <se r\377\377\377\377\377\377\377\377p\377\377\377\377\377\377\377\377te 87 fois>, static max_size_ = 100}
 
-
+	String str6=str3+str4; //+(string)
+	//Test avec gdb (p str6) $1 = {size_ = 13, capacity_ = 26, tab_ = 0x604200 "azertyuiopaaa", static max_size_ = 100}
+	str5=str5+str5; //+(string)
 	
 	return EXIT_SUCCESS;
 }

@@ -12,8 +12,7 @@ class String {
     //Méthodes
     size_t length(const char* c);
     size_t capacity(size_t size);
-    
-    
+     
   public : 
 	//Constructeurs
     String(); //Constructeur par défaut
@@ -45,4 +44,5 @@ class String {
 
 	friend String operator+(const String& s, const char c); //Recrée un nouvel objet, concatenation de l'ancien objet et d'un caractere a la suite de celui-ci
 	friend String operator+(const String& s, const char* str);  //Recrée un nouvel objet, concatenation de l'ancien objet et d'une chaine de caractere (non objet) a la suite de celui-ci
+	friend String operator+(const String& gauche, const String& droite); //Recrée un nouvel objet, concatenation de l'ancien objet et d'une chaine de caractere (objet) a la suite de celui-ci
 };

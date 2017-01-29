@@ -195,7 +195,7 @@ String operator+(const String& s, const char* str){ //Recrée un nouvel objet, c
 //On traite ce cas de la meme facon que plus haut : on verifie que la chaine que l'on souhaite creer ne depasse pas la taille maximale tout d'abord   
     String res;
     int strlongueur = res.length(str); 
-    if(s.size_+strlongueur > s.max_size_){
+    if(s.size_+strlongueur>s.max_size_){
 		printf("Attention (operateur +) : l'ajout de la chaine de caractere est impossible. Seul le membre de gauche est conserve.\n");
 		res=s;
     } 
@@ -212,4 +212,22 @@ String operator+(const String& s, const char* str){ //Recrée un nouvel objet, c
 	return res;
 }
 
-
+String operator+(const String& gauche, const String& droite){ //Recrée un nouvel objet, concatenation de l'ancien objet et d'une chaine de caractere (objet) a la suite de celui-ci
+//On traite ce cas de la meme facon que plus haut : on verifie que la chaine que l'on souhaite creer ne depasse pas la taille maximale tout d'abord   
+    String res;
+    if(gauche.size_+droite.size_>gauche.max_size_){
+		printf("Attention (operateur +) : l'ajout de la chaine de caractere est impossible. Seul le membre de gauche est conserve.\n");
+		res=gauche;
+    } 
+    else{
+		res.size_=gauche.size_+droite.size_;
+		res.capacity_=res.capacity(res.size_);
+		res.tab_= new char[res.capacity_+1];
+		for(unsigned int i=0; i<gauche.size_; i++)
+			res.tab_[i]=gauche.tab_[i];
+		for(unsigned int i=0; i<droite.size_; i++)
+			res.tab_[i+gauche.size_]=droite.tab_[i];
+		res.tab_[res.size_+1]='\0';
+	}
+	return res;
+}
